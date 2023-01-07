@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: Developer@!
+      ACCEPT_EULA: "Y"
+    ports:
+      - "5433:1433"
+    volumes:
+      - sqldata:/usr/share/sqlserver
+    networks:
+      - backend-compose-network
+volumes:
+  sqldata:
+    driver: local
+networks: 
+    backend-compose-network:
+      driver: bridge
